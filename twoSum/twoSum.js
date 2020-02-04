@@ -1,14 +1,11 @@
 const twoSum = function(nums, target) {
-  const dictionary = {};
+  const map = new Map();
   for (let i = 0; i < nums.length; i++) {
-    dictionary[nums[i]] = i;
-  }
-  for (let i = 0; i < nums.length; i++) {
-    if (
-      dictionary[target - nums[i]] != null &&
-      dictionary[target - nums[i]] != i
-    ) {
-      return [i, dictionary[target - nums[i]]];
+    let diff = target - nums[i];
+    if (map.has(diff)) {
+      return [map.get(diff), i];
+    } else {
+      map.set(nums[i], i);
     }
   }
   return [];
